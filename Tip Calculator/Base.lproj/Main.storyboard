@@ -116,11 +116,14 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9hn-HS-gQ8" secondAttribute="bottom" id="H0z-JF-eX6"/>
                             <constraint firstItem="9hn-HS-gQ8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pud-ww-g0g"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="7vY-kj-2r3" appends="YES" id="V9b-wh-FHo"/>
-                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Tip Calculator" id="43C-ku-dvz"/>
+                    <navigationItem key="navigationItem" title="Tip Calculator" id="43C-ku-dvz">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="vHa-cn-r14">
+                            <connections>
+                                <segue destination="Rbv-7S-ndL" kind="show" id="dIt-iR-4Lv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="billField" destination="gaq-zc-Zdy" id="Ep7-NI-7M8"/>
                         <outlet property="tipControl" destination="QIy-Ar-oj7" id="F0B-dB-DSe"/>
@@ -129,13 +132,89 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="7vY-kj-2r3">
+            </objects>
+            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="Gzw-qD-qyf">
+            <objects>
+                <tableViewController id="Rbv-7S-ndL" customClass="SettingsTableViewController" customModule="Tip_Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3Sg-L3-vdq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <pickerView key="tableFooterView" contentMode="scaleToFill" id="A3z-Xv-une" userLabel="DefaultPercentagePickerView">
+                            <rect key="frame" x="0.0" y="219" width="375" height="84"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        </pickerView>
+                        <sections>
+                            <tableViewSection headerTitle="Base Settings" id="iga-Dl-fDv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CTz-3f-IRH">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CTz-3f-IRH" id="EpM-1f-dNh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Tip Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPW-Nh-a6k">
+                                                    <rect key="frame" x="4" y="11.5" width="175.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWi-g2-B5V" userLabel="Percentage">
+                                                    <rect key="frame" x="340" y="11.5" width="31" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LWi-g2-B5V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sPW-Nh-a6k" secondAttribute="trailing" id="3E1-hT-DWp"/>
+                                                <constraint firstItem="sPW-Nh-a6k" firstAttribute="leading" secondItem="EpM-1f-dNh" secondAttribute="leading" constant="4" id="3yU-1r-qBa"/>
+                                                <constraint firstItem="LWi-g2-B5V" firstAttribute="centerY" secondItem="EpM-1f-dNh" secondAttribute="centerY" id="7n8-au-51u"/>
+                                                <constraint firstItem="sPW-Nh-a6k" firstAttribute="centerY" secondItem="EpM-1f-dNh" secondAttribute="centerY" id="Bjb-d7-1Lt"/>
+                                                <constraint firstAttribute="trailing" secondItem="LWi-g2-B5V" secondAttribute="trailing" constant="4" id="Gkh-St-WtA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Layout" id="mJV-BF-jHE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vvD-zs-uKG">
+                                        <rect key="frame" x="0.0" y="157" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvD-zs-uKG" id="CJ5-fb-r9j">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Rbv-7S-ndL" id="wdJ-MF-0Bi"/>
+                            <outlet property="delegate" destination="Rbv-7S-ndL" id="ss0-gp-uNO"/>
+                            <outletCollection property="gestureRecognizers" destination="gfI-O9-tGa" appends="YES" id="ByR-0T-w24"/>
+                        </connections>
+                    </tableView>
                     <connections>
-                        <action selector="onTap:" destination="BYZ-38-t0r" id="Bum-N0-KdV"/>
+                        <outlet property="defaultPercentagePicker" destination="A3z-Xv-une" id="VnA-8T-4yW"/>
+                        <outlet property="percentageLabel" destination="LWi-g2-B5V" id="6xm-48-Tgf"/>
+                        <outlet property="tapGesture" destination="gfI-O9-tGa" id="1ec-oh-R2x"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qfq-Co-Juq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gfI-O9-tGa">
+                    <connections>
+                        <action selector="dismissPickers:" destination="Rbv-7S-ndL" id="4N1-Dd-gXB"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1798" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uXy-XB-CEV">
@@ -153,7 +232,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMg-Mj-lUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="335" y="139"/>
         </scene>
     </scenes>
 </document>
