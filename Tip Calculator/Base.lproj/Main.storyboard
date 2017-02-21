@@ -144,8 +144,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <gestureRecognizers/>
-                        <pickerView key="tableFooterView" contentMode="scaleToFill" id="A3z-Xv-une" userLabel="DefaultPercentagePickerView">
-                            <rect key="frame" x="0.0" y="219" width="375" height="84"/>
+                        <pickerView key="tableFooterView" contentMode="scaleToFill" id="A3z-Xv-une" userLabel="PickerView">
+                            <rect key="frame" x="0.0" y="219" width="375" height="100"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </pickerView>
                         <sections>
@@ -190,6 +190,27 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvD-zs-uKG" id="CJ5-fb-r9j">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRj-11-h6W" userLabel="Background Color">
+                                                    <rect key="frame" x="4" y="11" width="137.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlS-4K-svD" userLabel="Color">
+                                                    <rect key="frame" x="326" y="11" width="45" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uRj-11-h6W" firstAttribute="centerY" secondItem="CJ5-fb-r9j" secondAttribute="centerY" id="6kX-Kf-fEO"/>
+                                                <constraint firstAttribute="trailing" secondItem="JlS-4K-svD" secondAttribute="trailing" constant="4" id="WgW-tE-pNC"/>
+                                                <constraint firstItem="JlS-4K-svD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uRj-11-h6W" secondAttribute="trailing" id="ltM-Rm-PoH"/>
+                                                <constraint firstItem="JlS-4K-svD" firstAttribute="centerY" secondItem="CJ5-fb-r9j" secondAttribute="centerY" id="wad-cT-v5Y"/>
+                                                <constraint firstItem="uRj-11-h6W" firstAttribute="leading" secondItem="CJ5-fb-r9j" secondAttribute="leading" constant="4" id="zWG-nD-o9t"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -202,8 +223,9 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="defaultPercentagePicker" destination="A3z-Xv-une" id="VnA-8T-4yW"/>
+                        <outlet property="colorLabel" destination="JlS-4K-svD" id="2fl-oP-Q6Z"/>
                         <outlet property="percentageLabel" destination="LWi-g2-B5V" id="6xm-48-Tgf"/>
+                        <outlet property="picker" destination="A3z-Xv-une" id="i6h-ZU-4XL"/>
                         <outlet property="tapGesture" destination="gfI-O9-tGa" id="1ec-oh-R2x"/>
                     </connections>
                 </tableViewController>

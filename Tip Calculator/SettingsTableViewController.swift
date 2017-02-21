@@ -12,16 +12,19 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDelegate, 
     
     static let animationTime = 0.2
 
-    @IBOutlet weak var defaultPercentagePicker: UIPickerView!
-    
-    var pickerData: [String] = [String]()
-    
+    @IBOutlet weak var picker: UIPickerView!
     
     @IBOutlet weak var percentageLabel: UILabel!
     
+    @IBOutlet weak var colorLabel: UILabel!
+    
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
+    let pickerPercentageData: [String] = ["18%", "20%", "25%"]
+    let pickerBackgroundColorData: [String] = ["White", "Blue/Green", "Purple", "Yellow", "Green", "Red", "Blue"]
+    var currentSection = 0
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,21 +39,22 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDelegate, 
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        defaultPercentagePicker.delegate = self
-        defaultPercentagePicker.dataSource = self
-        defaultPercentagePicker.alpha = 0
-        
-        pickerData = ["18%", "20%", "25%"]
+        picker.delegate = self
+        picker.dataSource = self
+        picker.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         let defaults = UserDefaults.standard
-        let intValue = defaults.integer(forKey: "defaultPercentage")
+        let tipPercentage = defaults.integer(forKey: "defaultPercentage")
         
-        defaultPercentagePicker.selectRow(intValue, inComponent: 0, animated: false)
-        percentageLabel.text = pickerData[intValue]
+        percentageLabel.text = pickerPercentageData[tipPercentage]
+    
+        let backgroundColor = defaults.integer(forKey: "defaultBackgroundColor")
+        colorLabel.text = pickerBackgroundColorData[backgroundColor]
+        updateBackgroundColor(intColor: backgroundColor)
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,11 +67,25 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        switch currentSection {
+        case 0:
+            return pickerPercentageData.count
+        case 1:
+            return pickerBackgroundColorData.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        switch currentSection {
+        case 0:
+            return pickerPercentageData[row]
+        case 1:
+            return pickerBackgroundColorData[row]
+        default:
+            return ""
+        }
     }
     
     
@@ -84,84 +102,73 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDelegate, 
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.percentageLabel.text = self.pickerData[row]
         UIView.animate(withDuration: SettingsTableViewController.animationTime, animations: {
-            self.defaultPercentagePicker.alpha = 0
+            self.picker.alpha = 0
         })
         
-        let defaults = UserDefaults.standard
-        defaults.set(row, forKey: "defaultPercentage")
-    }
+        if (currentSection == 0) {
+            self.percentageLabel.text = self.pickerPercentageData[row]
 
-    // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 0) {
-            UIView.animate(withDuration: SettingsTableViewController.animationTime, animations: {
-                self.defaultPercentagePicker.alpha = 1
-            })
+            let defaults = UserDefaults.standard
+            defaults.set(row, forKey: "defaultPercentage")
+        }
+        else if (currentSection == 1) {
+            self.colorLabel.text = self.pickerBackgroundColorData[row]
+            updateBackgroundColor(intColor: row)
+            
+            let defaults = UserDefaults.standard
+            defaults.set(row, forKey: "defaultBackgroundColor")
         }
     }
 
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func updateBackgroundColor(intColor: Int) {
+        switch intColor {
+        case 1:
+            self.view.backgroundColor = UIColor.localBlueGreen()
+        case 2:
+            self.view.backgroundColor = UIColor.localPurple()
+        case 3:
+            self.view.backgroundColor = UIColor.localYellow()
+        case 4:
+            self.view.backgroundColor = UIColor.localGreen()
+        case 5:
+            self.view.backgroundColor = UIColor.localRed()
+        case 6:
+            self.view.backgroundColor = UIColor.localBlue()
+        default:
+            self.view.backgroundColor = UIColor.white
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSection = indexPath.section
+        
+        picker.reloadAllComponents()
+        
+        if (currentSection == 0) {
+            let defaults = UserDefaults.standard
+            let tipPercentage = defaults.integer(forKey: "defaultPercentage")
+            
+            picker.selectRow(tipPercentage, inComponent: 0, animated: false)
+        }
+        else if (currentSection == 1) {
+            let defaults = UserDefaults.standard
+            let backgroundColor = defaults.integer(forKey: "defaultBackgroundColor")
+            
+            picker.selectRow(backgroundColor, inComponent: 0, animated: false)
+        }
+        
+        UIView.animate(withDuration: SettingsTableViewController.animationTime, animations: {
+            self.picker.alpha = 1
+        })
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func dismissPickers(_ sender: Any) {
         UIView.animate(withDuration: SettingsTableViewController.animationTime, animations: {
-            self.defaultPercentagePicker.alpha = 0
+            self.picker.alpha = 0
         })
     }
 }

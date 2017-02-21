@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B64B0C61E5BADB200105FA8 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64B0C51E5BADB200105FA8 /* SettingsTableViewController.swift */; };
+		5B64B0C81E5BCCA400105FA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64B0C71E5BCCA400105FA8 /* Constants.swift */; };
 		5BAA74111E5A629400E9C46E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA74101E5A629400E9C46E /* AppDelegate.swift */; };
 		5BAA74131E5A629400E9C46E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA74121E5A629400E9C46E /* ViewController.swift */; };
 		5BAA74161E5A629400E9C46E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BAA74141E5A629400E9C46E /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		5B64B0C51E5BADB200105FA8 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		5B64B0C71E5BCCA400105FA8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5BAA740D1E5A629400E9C46E /* Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BAA74101E5A629400E9C46E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BAA74121E5A629400E9C46E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,12 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				5BAA74101E5A629400E9C46E /* AppDelegate.swift */,
-				5BAA74121E5A629400E9C46E /* ViewController.swift */,
-				5BAA74141E5A629400E9C46E /* Main.storyboard */,
 				5BAA74171E5A629400E9C46E /* Assets.xcassets */,
-				5BAA74191E5A629400E9C46E /* LaunchScreen.storyboard */,
+				5B64B0C71E5BCCA400105FA8 /* Constants.swift */,
 				5BAA741C1E5A629400E9C46E /* Info.plist */,
+				5BAA74191E5A629400E9C46E /* LaunchScreen.storyboard */,
+				5BAA74141E5A629400E9C46E /* Main.storyboard */,
 				5B64B0C51E5BADB200105FA8 /* SettingsTableViewController.swift */,
+				5BAA74121E5A629400E9C46E /* ViewController.swift */,
 			);
 			path = "Tip Calculator";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				5B64B0C61E5BADB200105FA8 /* SettingsTableViewController.swift in Sources */,
 				5BAA74131E5A629400E9C46E /* ViewController.swift in Sources */,
 				5BAA74111E5A629400E9C46E /* AppDelegate.swift in Sources */,
+				5B64B0C81E5BCCA400105FA8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

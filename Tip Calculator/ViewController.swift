@@ -32,6 +32,9 @@ class ViewController: UIViewController {
         calculateTip()
         
         billField.becomeFirstResponder()
+        
+        let backgroundColor = defaults.integer(forKey: "defaultBackgroundColor")
+        updateBackgroundColor(intColor: backgroundColor)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +59,25 @@ class ViewController: UIViewController {
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+    }
+    
+    func updateBackgroundColor(intColor: Int) {
+        switch intColor {
+        case 1:
+            self.view.backgroundColor = UIColor.localBlueGreen()
+        case 2:
+            self.view.backgroundColor = UIColor.localPurple()
+        case 3:
+            self.view.backgroundColor = UIColor.localYellow()
+        case 4:
+            self.view.backgroundColor = UIColor.localGreen()
+        case 5:
+            self.view.backgroundColor = UIColor.localRed()
+        case 6:
+            self.view.backgroundColor = UIColor.localBlue()
+        default:
+            self.view.backgroundColor = UIColor.white
+        }
     }
     
 }
